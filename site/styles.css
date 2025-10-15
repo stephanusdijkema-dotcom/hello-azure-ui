@@ -1,0 +1,7 @@
+:root { color-scheme: light dark; }
+body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
+.card { max-width: 680px; padding: 1.5rem; border: 1px solid #ddd; border-radius: 12px; }
+h1 { margin-top: 0; }
+button { padding: .6rem 1rem; border-radius: 10px; border: 1px solid #bbb; cursor: pointer; }
+#status { margin-top: 1rem; font-weight: 600; }
+code { background: #f5f5f5; padding: 0.15rem 0.35rem; border-radius: 6px; }
