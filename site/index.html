@@ -5,15 +5,47 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Hello Azure</title>
   <style>
+    :root { color-scheme: light dark; }
     body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
-    .card { max-width: 600px; padding: 1.5rem; border: 1px solid #ddd; border-radius: 12px; }
+    .card { max-width: 680px; padding: 1.5rem; border: 1px solid #ddd; border-radius: 12px; }
     h1 { margin-top: 0; }
+    button { padding: .6rem 1rem; border-radius: 10px; border: 1px solid #bbb; cursor: pointer; }
+    #status { margin-top: 1rem; font-weight: 600; }
+    code { background: #f5f5f5; padding: 0.15rem 0.35rem; border-radius: 6px; }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Hello Azure, updated version ☁️</h1>
-    <p>If you can see this on your Azure web address later, your deployment worked!</p>
+    <h1>Hello Azure 🌤️</h1>
+    <p>This page is deployed from <code>/site</code>. Click the button to interact:</p>
+
+    <button id="toggle">Say hi</button>
+    <p id="status" aria-live="polite"></p>
+
+    <p style="margin-top:1rem;font-size:.95rem;opacity:.8">
+      Tip: Every commit to <code>main</code> redeploys this site automatically.
+    </p>
   </div>
+
+  <script>
+    const btn = document.getElementById('toggle');
+    const status = document.getElementById('status');
+    let showing = false;
+
+    function formatTime(d) {
+      // Local time, short & readable
+      return new Intl.DateTimeFormat(undefined, {
+        hour: 'numeric', minute: '2-digit', second: '2-digit'
+      }).format(d);
+    }
+
+    btn.addEventListener('click', () => {
+      showing = !showing;
+      status.textContent = showing
+        ? `👋 Hello from Azure! (updated at ${formatTime(new Date())})`
+        : '';
+      btn.textContent = showing ? 'Clear' : 'Say hi';
+    });
+  </script>
 </body>
 </html>
