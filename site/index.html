@@ -1,21 +1,34 @@
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hello Azure</title>
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body>
-  <div class="card">
-    <h1>Hello Azure 🌤️</h1>
-    <p>This page is deployed from <code>/site</code>. Click the button to interact:</p>
+name: Azure Static Web Apps CI/CD
 
-    <button id="toggle">Say hi</button>
-    <p id="status" aria-live="polite"></p>
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
 
-    <p style="margin-top:1rem;font-size:.95rem;opacity:.8">
-      Tip: Every commit to <code>main</code> redeploys this site automatically.
-    </p>
-  </div>
+permissions:
+  contents: read
+  pull-requests: write
 
-  <script src="/app.js"></script>
-</body>
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          #### Adjust these three if your structure changes ####
+          app_location: "/site"      # Path to your app folder
+          api_location: ""           # (optional) folder for Azure Functions
+          output_location: "/"       # Folder for build output (for frameworks)
