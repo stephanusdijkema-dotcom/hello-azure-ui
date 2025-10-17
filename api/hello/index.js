@@ -4,7 +4,7 @@ module.exports = async function (context, req) {
     (req.body && req.body.name) ||
     "friend";
 
-  return {
+  context.res = {
     status: 200,
     headers: { "Content-Type": "application/json" },
     body: {
