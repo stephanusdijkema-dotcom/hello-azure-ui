@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -6,7 +8,7 @@
 </head>
 <body>
   <div class="card">
-    <h1>Hello Azure – PR Preview ✅</h1>
+    <h1>Hello Azure Its Me Again World– PR Preview ✅</h1>
     <p>This page is deployed from <code>/site</code>. Click the button to interact:</p>
 
     <button id="toggle">Say hi</button>
@@ -15,7 +17,24 @@
     <p style="margin-top:1rem;font-size:.95rem;opacity:.8">
       Tip: Every commit to <code>main</code> redeploys this site automatically.
     </p>
+
+    <hr/>
+    <h2>Call the API (GET)</h2>
+    <button id="callApi">Call /api/hello</button>
+    <pre id="apiResult" style="margin-top:1rem;background:#f6f6f6;padding:1rem;border-radius:8px;overflow:auto;"></pre>
+
+    <!-- New POST section -->
+    <hr/>
+    <h2>Send data to the API (POST)</h2>
+    <form id="echoForm">
+      <label>Text to send:
+        <input id="echoInput" required />
+      </label>
+      <button type="submit">POST to /api/echo</button>
+    </form>
+    <pre id="echoResult" style="margin-top:1rem;background:#f6f6f6;padding:1rem;border-radius:8px;overflow:auto;"></pre>
   </div>
 
   <script src="/app.js"></script>
 </body>
+</html>

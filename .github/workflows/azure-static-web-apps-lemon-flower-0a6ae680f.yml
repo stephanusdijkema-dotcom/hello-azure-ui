@@ -19,14 +19,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and Deploy
+        id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          # Newer param name:
-          deployment_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          # Back-compat param (harmless if ignored):
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}   # needed for PR comment with Preview URL
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           app_location: /site
-          api_location: ""
+          api_location: /api          # <- no trailing slash, lower-case 'api'
           output_location: /
+
